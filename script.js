@@ -3800,3 +3800,21 @@ document.getElementById('data-preview').addEventListener('dblclick', function ()
 
 
 
+// Update visitor count
+let count = localStorage.getItem('visitCount') || 0;
+count++;
+localStorage.setItem('visitCount', count);
+document.getElementById('counter').innerText = count;
+
+// Update time dynamically
+function updateTime() {
+    let now = new Date();
+    let formattedTime = now.toLocaleTimeString();
+    document.getElementById('current-time').innerText = formattedTime;
+}
+
+// Update the time every second
+setInterval(updateTime, 1000);
+
+// Initialize time immediately on page load
+updateTime();
