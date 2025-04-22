@@ -47,10 +47,13 @@ html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></script>
 🔗 
 
-📣 Connect & Support
-Stay updated and connect with me:
+## 🌐 Connect with Me
 
-<a href="https://www.linkedin.com/in/eng-odeh-alamrow-15aa47271/" target="_blank"> <i class="fab fa-linkedin"></i> LinkedIn </a> <a href="https://web.facebook.com/profile.php?id=61572400510270" target="_blank"> <i class="fab fa-facebook"></i> Facebook </a> <a href="https://x.com/EngOdehalamrow" target="_blank"> <i class="fab fa-x-twitter"></i> X (Twitter) </a> <a href="https://apps.microsoft.com/search/publisher?name=Eng.+Odeh+Alamrow&hl=en-us&gl=US" target="_blank"> <i class="fab fa-microsoft"></i> Microsoft Store </a>
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/eng-odeh-alamrow-15aa47271/)  
+[![Facebook](https://img.shields.io/badge/Facebook-1877F2?logo=facebook&logoColor=white)](https://web.facebook.com/profile.php?id=61572400510270)  
+[![X (Twitter)](https://img.shields.io/badge/X-000000?logo=x&logoColor=white)](https://x.com/EngOdehalamrow)  
+[![Microsoft Store](https://img.shields.io/badge/Microsoft%20Store-0078D4?logo=microsoft&logoColor=white)](https://apps.microsoft.com/search/publisher?name=Eng.+Odeh+Alamrow&hl=en-us&gl=US)  
+
 
 🚀 Let’s make environmental analytics accessible to all!
 
