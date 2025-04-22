@@ -2324,6 +2324,7 @@ function updatePredictionInsights(parameter, predictionData, r2Score, years) {
     const changePercent = (changeValue / startValue * 100).toFixed(1);
     const trendDirection = changeValue > 0 ? 'increasing' : changeValue < 0 ? 'decreasing' : 'stable';
    
+   
     // Generate insights
     const currentYear = new Date().getFullYear();
    
@@ -2360,108 +2361,134 @@ function updatePredictionInsights(parameter, predictionData, r2Score, years) {
 
 
 // Generate projection-specific recommendations
-
-// Generate recommendations for Waste Management Metrics
-function getWasteProjectionRecommendation(parameter, trendDirection, changePercent, cityName) {
+function getParameterProjectionRecommendation(parameter, trendDirection, changePercent, cityName) {
     const changePercentNum = parseFloat(changePercent);
-
+   
     switch(parameter) {
-        case 'waste_generation':
+        case 'temperature':
             if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} is experiencing rising waste levels. Strengthen recycling programs, encourage sustainable consumption, and invest in advanced waste processing technologies.`;
+                return `${cityName} may experience significant warming. Prioritize urban cooling strategies including expanded tree canopy, cool roofs, green infrastructure, and heat adaptation plans for vulnerable populations.`;
             } else if (trendDirection === 'decreasing' && changePercentNum > 10) {
-                return `${cityName} is reducing waste generation. Maintain eco-friendly initiatives and promote circular economy practices.`;
+                return `${cityName} may experience cooler temperatures. This trend could reduce cooling needs but may require adaptation for infrastructure, agriculture, and winter planning.`;
             }
-            return `${cityName} maintains stable waste levels. Continue monitoring trends for long-term sustainability.`;
-
-        case 'recycling_efficiency':
-            if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} is improving recycling rates! Expand awareness programs, optimize waste sorting facilities, and introduce new recycling incentives.`;
-            } else if (trendDirection === 'decreasing' && changePercentNum > 10) {
-                return `${cityName} is seeing declining recycling efficiency. Address bottlenecks in sorting logistics, enhance public participation, and upgrade collection methods.`;
-            }
-            return `${cityName} maintains steady recycling levels. Continuous efficiency checks will keep progress on track.`;
-
-        case 'landfill_usage':
-            if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} relies more on landfills—enhance waste diversion programs, explore alternative disposal methods, and improve landfill space optimization.`;
-            } else if (trendDirection === 'decreasing' && changePercentNum > 10) {
-                return `${cityName} is shifting away from landfills. Expand composting and waste-to-energy solutions for long-term sustainability.`;
-            }
-            return `${cityName} maintains steady landfill utilization. Periodic evaluations will ensure optimal space usage.`;
-
-        case 'plastic_waste':
-            if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} is generating more plastic waste. Strengthen bans on single-use plastics, improve collection systems, and invest in biodegradable alternatives.`;
-            }
-            return `${cityName} is controlling plastic waste levels. Keep driving public awareness and material innovations.`;
-
-        case 'organic_waste':
-            if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} is producing more organic waste. Promote large-scale composting, integrate waste-to-energy solutions, and improve collection systems.`;
-            }
-            return `${cityName} is managing organic waste effectively. Continue refining composting and biofuel strategies.`;
-
-        case 'hazardous_waste':
-            if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} has rising hazardous waste levels—reinforce containment protocols, enforce stricter handling regulations, and monitor industrial disposal compliance.`;
-            }
-            return `${cityName} keeps hazardous waste under control. Maintain regular assessments to avoid environmental risks.`;
-
-        case 'construction_waste':
-            if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} has increasing construction waste. Improve material recovery, incentivize reuse programs, and introduce modular building methods to reduce waste.`;
-            }
-            return `${cityName} is keeping construction waste manageable. Maintain focus on sustainable demolition practices.`;
-
-        case 'electronic_waste':
-            if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} is generating more e-waste. Promote take-back programs, expand refurbishing initiatives, and strengthen electronics recycling policies.`;
-            }
-            return `${cityName} manages e-waste effectively. Optimize collection strategies for long-term efficiency.`;
-
-        case 'incineration_rate':
-            if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} relies more on incineration. Ensure emissions compliance, improve energy recovery, and monitor air pollution risks.`;
-            }
-            return `${cityName} maintains optimal incineration rates. Keep refining energy-to-waste conversion systems.`;
-
-     case 'waste_collection_efficiency':
-    if (trendDirection === 'decreasing' && changePercentNum > 10) {
-        return `${cityName} is seeing lower waste collection efficiency. Upgrade fleet management, optimize collection schedules, and improve community participation.`;
+            return `${cityName} is projected to maintain relatively stable temperatures. Continue climate resilience planning and monitoring of seasonal extremes.`;
+           
+		   
+		   
+		   
+		   
+		   case 'ozone':
+    if (trendDirection === 'increasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant increase in ozone levels. Focus on stricter vehicle emission regulations, promoting clean energy sources, and enhancing public awareness to reduce ozone precursors.`;
+    } else if (trendDirection === 'decreasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant decrease in ozone levels. This improvement supports better air quality and public health, but ongoing monitoring and sustainable practices remain essential.`;
     }
-    return `${cityName} maintains effective waste collection. Continue improving operational logistics.`; // ❌ NO extra closing brace here!
+    return `${cityName} is projected to maintain relatively stable ozone levels. Continue monitoring air quality and implementing green initiatives for long-term sustainability.`;
 
-case 'safety_score':
-    if (changePercentNum < 10 && trendDirection === 'decreasing') {
-        return `${cityName} is experiencing declining safety standards. Strengthen waste management regulations, improve hazardous material handling, and conduct risk assessments.`;
+		   case 'wastewater_volume':
+    if (trendDirection === 'increasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant increase in wastewater volume. Focus on expanding treatment facilities, improving system efficiency, and implementing advanced wastewater recycling technologies.`;
+    } else if (trendDirection === 'decreasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant decrease in wastewater volume, suggesting improved water conservation practices. Continue optimizing processes and monitoring consumption to sustain progress.`;
     }
-    return `${cityName} maintains safety levels. Periodic reviews will ensure continued compliance.`;
+    return `${cityName} is projected to maintain relatively stable wastewater volumes. Regular assessments and infrastructure upgrades are essential to ensure long-term sustainability.`;
 
-        case 'toxicity_level':
+case 'waste_generation':
+    if (trendDirection === 'increasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant increase in waste generation. Enhance recycling programs, promote waste reduction initiatives, and invest in sustainable disposal methods to address challenges.`;
+    } else if (trendDirection === 'decreasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant decrease in waste generation, reflecting positive changes in consumption behavior. Continue encouraging sustainable practices and monitoring disposal efficiency.`;
+    }
+    return `${cityName} is projected to maintain relatively stable waste generation levels. Regular monitoring and proactive policies can ensure stability.`;
+
+case 'recycling_efficiency':
+    if (trendDirection === 'increasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant increase in recycling efficiency. Expand recycling programs, strengthen public education, and optimize logistics to sustain growth.`;
+    } else if (trendDirection === 'decreasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant decrease in recycling efficiency. Focus on addressing system bottlenecks, improving collection processes, and engaging communities to reverse the trend.`;
+    }
+    return `${cityName} is projected to maintain relatively stable recycling efficiency. Periodic evaluations and continuous innovation can support long-term success.`;
+
+case 'landfill_usage':
+    if (trendDirection === 'increasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant increase in landfill usage, nearing capacity. Prioritize waste diversion strategies, explore alternative disposal methods, and promote recycling initiatives to reduce reliance on landfills.`;
+    } else if (trendDirection === 'decreasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant decrease in landfill usage, indicating effective waste management strategies. Continue implementing innovative solutions and optimizing operations to sustain this progress.`;
+    }
+    return `${cityName} is projected to maintain relatively stable landfill usage. Long-term planning and careful monitoring are essential for sustainable waste management.`;
+
+		   
+		   
+		   
+		   
+		   case 'water_quality_index':
+    if (trendDirection === 'increasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant improvement in water quality. Focus on enhancing water treatment facilities, conserving aquatic ecosystems, and reducing pollution sources for sustained progress.`;
+    } else if (trendDirection === 'decreasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant decline in water quality. Prioritize stricter regulations on pollutants, strengthen wastewater management, and promote community efforts to protect water resources.`;
+    }
+    return `${cityName} is projected to maintain relatively stable water quality. Regular monitoring and sustainable water management strategies are essential to ensure stability.`;
+
+		   
+		   
+		   
+		   
+		   
+		   case 'population_density':
+    if (trendDirection === 'increasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant rise in population density. Prioritize strategies for managing urban crowding, such as expanding infrastructure, improving public transport, and creating more green spaces to enhance livability.`;
+    } else if (trendDirection === 'decreasing' && changePercentNum > 10) {
+        return `${cityName} may experience a significant drop in population density. Focus on revitalizing local economies, optimizing infrastructure use, and promoting urban growth through sustainable practices.`;
+    }
+    return `${cityName} is projected to maintain relatively stable population density. Continue monitoring urban development and ensuring equitable resource distribution for balanced growth.`;
+
+		   
+		   case 'user_defined':
+    if (trendDirection === 'increasing' && changePercentNum > 20) {
+        return "The parameter indicates a notable increasing trend. Consider developing strategies to leverage opportunities or address potential risks associated with this growth.";
+    } else if (trendDirection === 'decreasing' && changePercentNum > 20) {
+        return "The parameter reflects a significant decreasing trend. Focus on implementing measures to mitigate challenges or sustain positive progress.";
+    }
+    return "The parameter exhibits moderate fluctuations. Regular monitoring and adaptive strategies are essential for maintaining stability and achieving long-term goals.";
+    
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+        case 'air_quality':
+            if (trendDirection === 'increasing' && changePercentNum > 15) {
+                return `${cityName} may face deteriorating air quality. Implement stricter emission controls, expand air quality monitoring network, promote clean transportation, and develop air quality warning systems.`;
+            } else if (trendDirection === 'decreasing') {
+                return `${cityName} shows improving air quality trends. Maintain successful emission reduction programs and continue investments in clean air technologies.`;
+            }
+            return `${cityName} air quality trends require vigilance. Focus on pollution hotspots and strengthen current air quality management strategies.`;
+           
+        case 'carbon_emissions':
+            if (trendDirection === 'increasing') {
+                return `${cityName} carbon emissions are projected to increase. Accelerate renewable energy transition, implement building efficiency standards, expand sustainable transportation, and consider carbon pricing mechanisms.`;
+            } else if (trendDirection === 'decreasing' && changePercentNum > 15) {
+                return `${cityName} shows promising carbon reduction trends. Continue successful decarbonization strategies and share best practices for climate leadership.`;
+            }
+            return `${cityName} should strengthen carbon reduction efforts to align with climate goals. Identify key emission sources and implement targeted mitigation strategies.`;
+           
+        case 'urban_heat':
             if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} is facing rising toxicity levels. Enhance containment strategies, reinforce environmental health policies, and monitor industrial pollution.`;
+                return `${cityName} urban heat island effect may intensify. Implement comprehensive cooling strategies including expanded green spaces, cool pavements, green roofs, and cooling centers for vulnerable residents.`;
             }
-            return `${cityName} is controlling toxicity risks effectively. Maintain strict compliance checks.`;
-
-        case 'fire_risk':
-            if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} is facing higher fire risks. Improve hazardous waste storage, enforce preventive safety measures, and train emergency response teams.`;
+            return `${cityName} should continue monitoring urban heat patterns and implement preventive measures in urban planning and development.`;
+           
+        case 'precipitation':
+            if (trendDirection === 'increasing' && changePercentNum > 20) {
+                return `${cityName} may experience increased precipitation. Enhance stormwater infrastructure, implement water-sensitive urban design, and update flood preparedness plans.`;
+            } else if (trendDirection === 'decreasing' && changePercentNum > 20) {
+                return `${cityName} may face decreased precipitation. Implement water conservation programs, drought-resistant landscaping, and water recycling systems.`;
             }
-            return `${cityName} maintains low fire risks. Continue ensuring proper flammable material management.`;
-
-        case 'containment_level':
-            if (changePercentNum < 5 && trendDirection === 'decreasing') {
-                return `${cityName} is experiencing weakened containment. Invest in stronger waste storage facilities, reinforce security protocols, and prevent leakage risks.`;
-            }
-            return `${cityName} maintains solid containment levels. Continue enforcing industry standards.`;
-
-        case 'incident_rate':
-            if (trendDirection === 'increasing' && changePercentNum > 10) {
-                return `${cityName} is seeing more waste-related incidents. Strengthen safety regulations, enhance waste disposal oversight, and implement rapid response plans.`;
-            }
-            return `${cityName} keeps incident rates low. Maintain emergency preparedness programs.`;
-
+            return `${cityName} should optimize water resource management for long-term sustainability with moderate precipitation fluctuations.`;
+        
 default:
     return "Use this parameter to complement broader environmental and strategic analyses. Continuous monitoring will reveal valuable insights for proactive planning.";
 
