@@ -330,22 +330,21 @@ body.light-theme .prediction-results {
     width: 20px;
     height: 20px;
 }
-
 .time-display {
-    margin-top: auto;
-    padding: 15px;
-    font-size: 20px;
     display: flex;
     align-items: center;
     gap: 8px;
-    color: color: #0af;
-    border-top: 1px solid var(--border-color);
+    font-size: 18px;
+    font-weight: bold;
+    color: #0af;
 }
 
 .status-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
+    background-color: #0af;
     border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 180, 255, 0.7);
 }
 
 .status-dot.online {
