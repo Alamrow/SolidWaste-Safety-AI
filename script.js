@@ -1,4 +1,4 @@
-// Environment & Climate Prediction AI 
+// Solid Waste and Safety AI  
 // Fixed JavaScript with improved functionality
 
 // Global variables
@@ -42,6 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
     loadInitialData();
 });
 
+
+
+
+
+
+
 // ==============================
 // INITIALIZATION FUNCTIONS
 // ==============================
@@ -80,6 +86,8 @@ function initThemes() {
         ecoThemeBtn.classList.remove('active');
         darkThemeBtn.classList.add('active');
        
+	   
+	   
         // Refresh any active charts
         refreshActiveCharts();
        
@@ -103,6 +111,12 @@ function initThemes() {
         showNotification('Theme Changed', 'Eco theme applied', 'success');
     });
 }
+
+
+
+
+
+
 
 // Initialize navigation menu
 function initNavigation() {
