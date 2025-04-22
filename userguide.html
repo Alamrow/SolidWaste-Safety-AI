@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <title>Environment & Climate Prediction AI – User Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #eee; /* Slightly lighter text for better contrast on orange backgrounds */
+            background-color: #1a1300; /* Darker background to make orange pop */
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #ff8c00; /* Vibrant Orange */
+            color: #ffffff;
+            text-shadow: 0px 0px 10px #ff8c00; /* Orange glow */
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ff8c00; /* Vibrant Orange */
+            text-shadow: 0px 0px 15px #ffa500; /* Slightly lighter orange glow */
+            margin-bottom: 10px;
+        }
+
+        .guide-title {
+            font-size: 26px;
+            color: #ffa500; /* Slightly lighter orange */
+            text-shadow: 0px 0px 10px #ffa500; /* Lighter orange glow */
+            margin-top: 10px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: rgba(77, 58, 0, 0.4); /* Darker, slightly transparent orange */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.3); /* Lighter orange shadow */
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: #ffa500; /* Slightly lighter orange */
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ff8c00; /* Vibrant Orange */
+            text-shadow: 0px 0px 10px #ffa500; /* Lighter orange glow */
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ff8c00; /* Vibrant Orange */
+            text-align: center;
+            font-size: 14px;
+            color: #ffa500; /* Slightly lighter orange */
+            text-shadow: 0px 0px 10px #ffa500; /* Lighter orange glow */
+        }
+
+        .footer-link {
+            color: #ffa500; /* Slightly lighter orange */
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: #ffffff;
+            text-shadow: 0px 0px 15px #ffa500; /* Lighter orange glow on hover */
+        }
+
+        .info-note {
+            font-size: 14px;
+            color: #ddd; /* Keeping a neutral color for the note */
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+		
+		.time-display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: "Orbitron", sans-serif;
+        font-size: 16px; /* Slightly smaller for a polished look */
+        color: #fff;
+        text-shadow: 0 0 8px #0ff, 0 0 12px #00f;
+        background: rgba(30, 30, 30, 0.8);
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: 1px solid #0ff;
+        box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.5), 0 0 15px rgba(0, 100, 255, 0.4);
+    }
+
+    #current-time {
+        font-size: 20px;
+        font-weight: bold;
+        color: #0ff;
+        letter-spacing: 2px;
+        padding: 5px;
+    }
+
+    .status-dot.online {
+        width: 10px;
+        height: 10px;
+        background-color: #0f0;
+        border-radius: 50%;
+        box-shadow: 0 0 5px #0f0;
+    }
+</style>
+<script>
+    function updateTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const dateString = now.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' });
+
+        document.getElementById("current-time").textContent = timeString;
+        document.getElementById("current-date").textContent = dateString;
+    }
+
+    document.addEventListener("DOMContentLoaded", updateTime);
+    setInterval(updateTime, 1000); // Keeps updating every second
+</script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Solid Waste and Safety <span>AI</span></div>
+        <div class="guide-title">User Guide</div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Getting Started</h2>
+        <p><b>Launching the App:</b> Open the application from your desktop. The main dashboard is designed for intuitive navigation, with clearly labeled sections for data import, AI predictions, results visualization, and export options.</p>
+        <p><b>Dashboard Overview:</b> Your dashboard provides quick access to all major functions. Tooltips and brief descriptions accompany each icon, so you always know what each option does.</p>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Importing Your Data</h2>
+        <p>Prepare your dataset properly before importing:</p>
+        <ul>
+            <li><b>city:</b> Name of the city.</li>
+            <li><b>time:</b> Date and time (formatted as YYYY-MM-DD HH:MM).</li>
+            <li><b>latitude & longitude:</b> Geographic coordinates.</li>
+            <li><b>population:</b> City population number.</li>
+            <li><b>climate_zone:</b> Classification of the climate type.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Example CSV file structure :</h2>
+        <p>To visualize and compare your AI predictions with actual data, you can include an optional column named <code>user_defined</code> in your CSV file. This column should contain the predicted values for the environmental parameter you are forecasting.</p>
+        <div class="example-row">
+            <strong>Example:</strong>
+            <code>Dubai,2020-12-01 12:00,25.276987,55.296249,3300000,Desert,24.5,180,120,4500,35,65,85,4500,120,1015,0.5,60,12.5,400,220,2.5,65,0.3,8.5,Your AI prediction Value</code>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Generating Reports</h2>
+
+        <div class="subsection">
+            <h3 class="subsection-title">1. Exporting Waste & Safety Report</h3>
+            <p>To generate a comprehensive Waste & Safety Report for a specific location:</p>
+            <ol>
+                <li>Navigate to the <strong>"Location Info"</strong> section of the application.</li>
+                <li>Ensure the desired location is currently displayed.</li>
+                <li>Click the <strong>"Generate Full Report"</strong> button.</li>
+            </ol>
+            <p>Upon clicking, a full Waste & Safety Report will be generated. You will then have the options to:</p>
+            <ul>
+                <li><strong>Print</strong> the report directly.</li>
+                <li><strong>Save as PDF</strong> or other supported document formats.</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3 class="subsection-title">2. Exporting Prediction Data Report</h3>
+            <p>To generate a report of your prediction results for a chosen environmental parameter:</p>
+            <ol>
+                <li>First, <strong>run a prediction</strong> for your desired environmental parameter.</li>
+                <li>Once the prediction is complete, click the <strong>"Export Prediction Data"</strong> button.</li>
+            </ol>
+            <p>This action will generate a report containing the prediction data for the selected parameter.</p>
+        </div>
+
+        <div class="subsection">
+            <h3 class="subsection-title">3. Downloading Plots as PNG</h3>
+            <p>You can easily save any generated plot or chart as a PNG image:</p>
+            <ul>
+                <li>Locate the <strong>"DOWNLOAD Plot"</strong> button associated with the specific plot you wish to save.</li>
+                <li>Alternatively, look for an <strong>"Export Chart"</strong> option (which may offer additional formats).</li>
+                <li>Click the respective button to download the plot as a PNG file.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Configuring AI Predictions</h2>
+        <p>Set up your prediction by adjusting the following options:</p>
+        <ul>
+            <li><b>Prediction Model:</b> Choose from:
+                <ul>
+                    <li>Linear Regression</li>
+                    <li>Random Forest</li>
+                    <li>Polynomial Regression</li>
+                    <li>ARIMA</li>
+                    <li>Neural Network</li>
+                </ul>
+            </li>
+            <li><b>Chart Type:</b> Line, Area, Bar, Scatter, or 3D Surface.</li>
+            <li><b>Forecast Years:</b> Select between 1-10 years.</li>
+            <li><b>Confidence Level:</b> Adjust between 80%-99% for accuracy control.</li>
+        </ul>
+    </div>
+
+    <div class="info-note">
+    🔍 **Note:** While **Solid Waste and Safety AI** provides detailed insights based on available datasets, users should seek additional **validated environmental data** for professional research or policy-making.
+ 
+🚀 **Coming Soon:** This <img src="https://flagcdn.com/w40/ae.png" alt="UAE Flag"> **UAE-focused demo** previews my next Globaly **upcoming app**—stay tuned for even more advanced features!
+
+    📢 **Explore More Apps:** Check out my other apps on **Microsoft Store** for more cutting-edge environmental analytics and smart AI solutions!
+</div>
+
+    <div class="footer">
+        <p class="neon-text1">
+          
+<a href="https://www.linkedin.com/in/eng-odeh-alamrow-15aa47271/" target="_blank">
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://web.facebook.com/profile.php?id=61572400510270" target="_blank">
+            <i class="fab fa-facebook"></i> Facebook
+        </a>
+        <a href="https://x.com/EngOdehalamrow" target="_blank">
+            <i class="fab fa-x-twitter"></i> X (Twitter)
+        </a>
+        <a href="https://apps.microsoft.com/search/publisher?name=Eng.+Odeh+Alamrow&hl=en-us&gl=US" target="_blank">
+            <i class="fab fa-microsoft"></i> Microsoft Store
+        </a>
+
+        </p>
+    </div>
+	<div class="time-display">
+    <div class="status-dot online"></div>
+    <span id="current-time">Loading...</span>
+    <span id="current-date">Loading...</span> 
+</div>
+
+		
+	
+
+
+</body>
+
+</html>

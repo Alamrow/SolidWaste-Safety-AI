@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environment & Climate Prediction AI</title>
+   <!-- Rajdhani & Orbitron Fonts (Google Fonts CDN) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&family=Orbitron:wght@400;700&display=swap">
+
+<!-- Leaflet CSS (Map Styling) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.css">
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+	 
+    <link rel="stylesheet" href="styles.css">
+	
+</head>
+<body>
+    <div class="theme-toggle">
+        <button id="theme-light" class="theme-button" title="Light Theme">
+    <i class="fas fa-sun"></i> <!-- Swapped from Feather to Font Awesome -->
+</button>
+
+<button id="theme-dark" class="theme-button active" title="Dark Theme">
+    <i class="fas fa-moon"></i> <!-- Swapped from Feather to Font Awesome -->
+</button>
+
+<button id="theme-eco" class="theme-button" title="Eco Theme">
+    <i class="fas fa-bolt"></i> <!-- Swapped from Feather to Font Awesome -->
+</button>
+
+		
+    </div>
+    <div class="side-panel">
+        <div class="logo-area">
+            <div class="app-logo">Solid Waste</span><span class="accent-text1">And Safety</span><span class="accent-text"> AI</span></div>
+            
+        </div>
+		<div class="app-badge" id="current-year"></div>
+        
+        <div class="nav-menu">
+          <a href="#" class="nav-item active" data-view="dashboard">
+    <i class="fas fa-th-large"></i> <!-- Font Awesome equivalent -->
+    <span>Dashboard</span>
+</a>
+
+<a href="#" class="nav-item" data-view="map">
+    <i class="fas fa-map"></i> <!-- Font Awesome equivalent -->
+    <span>Map</span>
+</a>
+
+<a href="#" class="nav-item" data-view="predict">
+    <i class="fas fa-brain"></i> <!-- Font Awesome equivalent -->
+    <span>Predictions</span>
+</a>
+
+<a href="#" class="nav-item" data-view="data">
+    <i class="fas fa-database"></i> <!-- Font Awesome equivalent -->
+    <span>Data Hub</span>
+</a>
+
+
+
+
+<a href="https://www.linkedin.com/in/eng-odeh-alamrow-15aa47271/" target="_blank">
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://web.facebook.com/profile.php?id=61572400510270" target="_blank">
+            <i class="fab fa-facebook"></i> Facebook
+        </a>
+        <a href="https://x.com/EngOdehalamrow" target="_blank">
+            <i class="fab fa-x-twitter"></i> X (Twitter)
+        </a>
+        <a href="https://apps.microsoft.com/search/publisher?name=Eng.+Odeh+Alamrow&hl=en-us&gl=US" target="_blank">
+            <i class="fab fa-microsoft"></i> Microsoft Store
+        </a>
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+        <div class="time-display">
+            <div class="status-dot online"></div>
+            <span id="current-time">Loading...</span>
+			
+        </div>
+    </div>
+    <div class="main-area">
+    <div class="top-bar">
+        <div class="page-title" id="page-title">Dashboard</div>
+		 <button id="user-guide-button" class="user-guide-button" onclick="window.open('userguide.html', '_blank')">
+    <i class="fas fa-book-open"></i>
+    User Guide
+</button>
+        <div class="controls-area" style="display: flex; align-items: center; gap: 10px;">
+            
+            <div class="city-selector">
+                <select id="city-select">
+                    <option value="singapore">Dubai</option>
+                    
+                </select>
+            </div>
+     
+                <div class="data-controls">
+                    <select id="data-source">
+                        <option value="array">Default Data</option>
+                        <option value="csv">Import CSV</option>
+                    </select>
+                    <button id="load-csv" class="action-button">
+    <i class="fas fa-upload"></i> <!-- Swapped from Feather to Font Awesome -->
+</button>
+
+                    <input type="file" id="csv-file-input" accept=".csv" style="display: none;">
+                </div>
+            </div>
+        </div>
+        
+        <!-- DASHBOARD VIEW -->
+	
+        <div class="page-view active" id="dashboard-view">
+            <div class="section-title">Environmental Metrics</div>
+            
+            <div class="metrics-row" id="metric-grid">
+                <!-- Metrics will be generated dynamically -->
+            </div>
+            
+            <div class="section-title">
+                <span>Data Visualization</span>
+                <div class="chart-type-selector">
+                    <label>Chart Type:</label>
+                    <select id="view-mode">
+                        <option value="line">Line Chart</option>
+                        <option value="bar">Bar Chart</option>
+                        <option value="area">Area Chart</option>
+                        <option value="scatter">Scatter Plot</option>
+                        <option value="heatmap">Heat Map</option>
+                        <option value="3d">3D Surface</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-area" id="main-chart"></div>
+                <div class="chart-options">
+                    <div class="option-group">
+                        <label>Parameter:</label>
+                        <select id="chart-param">
+                            <!-- Parameters will be filled dynamically -->
+                        </select>
+                    </div>
+                    <div class="option-group">
+                        <label>Time Range:</label>
+                        <select id="timeframe">
+                            <option value="24h">24 Hours</option>
+                            <option value="7d">7 Days</option>
+                            <option value="30d">30 Days</option>
+                            <option value="1y">1 Year</option>
+                            <option value="10y">10 Years</option>
+                        </select>
+                    </div>
+                    <button id="export-chart" class="action-button">
+                        <i class="fas fa-download"></i> 
+
+                        Export Chart
+                    </button>
+                </div>
+            </div>
+            
+            <div class="section-title">Analysis Insights</div>
+            
+            <div class="insights-area" id="dashboard-insights">
+                <p>Select parameters above to see detailed insights</p>
+            </div>
+            
+            <div class="action-row">
+               <button id="save-city-data" class="action-button primary">
+    <i class="fas fa-save"></i> <!-- Swapped from Feather to Font Awesome -->
+    Save City Data
+</button>
+
+            </div>
+        </div>
+        
+        <!-- MAP VIEW -->
+        <div class="page-view" id="map-view">
+            <div class="full-map-container" id="geo-map"></div>
+            
+            <div class="floating-panel" id="map-panel">
+    <div class="panel-title">
+        <span>Location Info</span>
+        <button id="panel-toggle" class="icon-button">Hide & Show▶</button>
+    </div>
+                
+                <div class="panel-content">
+                    <div class="location-info" id="location-info">
+                       <div class="placeholder-message">
+    <i class="fas fa-map-pin"></i> <!-- Swapped from Feather to Font Awesome -->
+    <p>Select a location on the map</p>
+</div>
+
+                    </div>
+                  <div class="location-metrics">
+    <div class="metric-row">
+        <div class="metric-name">Waste Generation</div>
+        <div class="metric-value" id="loc-waste_generation">-</div>
+    </div>
+    <div class="metric-row">
+        <div class="metric-name">Recycling Efficiency</div>
+        <div class="metric-value" id="loc-recycling_efficiency">-</div>
+    </div>
+    <div class="metric-row">
+        <div class="metric-name">Landfill Usage</div>
+        <div class="metric-value" id="loc-landfill_usage">-</div>
+    </div>
+    
+    <div class="metric-row">
+        <div class="metric-name">Waste Collection Efficiency</div>
+        <div class="metric-value" id="loc-waste_collection_efficiency">-</div>
+    </div>
+
+
+
+
+
+                    </div>
+                    
+                    <button id="generate-report" class="action-button primary full-width">
+    <i class="fas fa-file-alt"></i> <!-- Swapped from Feather to Font Awesome -->
+    Generate Full Report
+</button>
+
+                </div>
+            </div>
+        </div>
+        
+        <!-- PREDICTION VIEW -->
+        <div class="page-view" id="predict-view">
+            <div class="section-title">AI-Powered Climate Predictions</div>
+            
+            <div class="predict-container">
+                <div class="predict-options">
+                    <div class="option-group">
+                        <label>Parameter:</label>
+                        <select id="predict-param">
+                            <!-- Parameters will be filled dynamically -->
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                       <label>Prediction Model:</label>
+<select id="ai-model" onchange="updateModelDescription()">
+    <option value="regression">Linear Regression</option>
+    <option value="random_forest">Random Forest</option>
+    <option value="polynomial">Polynomial Regression</option>
+    <option value="arima">ARIMA</option>
+    <option value="nn">Neural Network</option>
+</select>
+<div id="model-description" class="description"></div>
+
+                    </div>
+                    
+                    <div class="option-group">
+                        <label>Chart Type:</label>
+                        <select id="predict-chart-type">
+                            <option value="line">Line Chart</option>
+                            <option value="area">Area Chart</option>
+                            <option value="bar">Bar Chart</option>
+                            <option value="scatter">Scatter Plot</option>
+							 <option value="3d">3D Surface</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label>Forecast Years: <span id="forecast-value">5</span></label>
+                        <input type="range" id="forecast-period" min="1" max="10" value="5">
+                    </div>
+                    
+                    <div class="option-group">
+                        <label>Confidence: <span id="confidence-value">95%</span></label>
+                        <input type="range" id="confidence-level" min="80" max="99" value="95">
+                    </div>
+                    
+                   <button id="run-prediction" class="action-button primary full-width">
+    <i class="fas fa-play"></i> <!-- Swapped from Feather to Font Awesome -->
+    Run Prediction
+</button>
+
+                </div>
+                
+                <div class="prediction-results">
+                    <div class="chart-area" id="ai-chart"></div>
+                    
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <div class="stat-name">R² Score</div>
+                            <div class="stat-value" id="r2-score">-</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-name">MAE</div>
+                            <div class="stat-value" id="mae-score">-</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-name">RMSE</div>
+                            <div class="stat-value" id="rmse-score">-</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-name">Samples</div>
+                            <div class="stat-value" id="sample-count">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-title">AI Insights & Recommendations</div>
+            
+            <div class="insights-area" id="ai-insights">
+                <p class="placeholder-message">Run a prediction to generate insights</p>
+            </div>
+            
+            <div class="action-row">
+                <button id="export-prediction" class="action-button">
+    <i class="fas fa-download"></i> <!-- Swapped from Feather to Font Awesome -->
+    Export Prediction Data
+</button>
+
+            </div>
+        </div>
+        
+        <!-- DATA HUB VIEW -->
+        <div class="page-view" id="data-view">
+            <div class="section-title">Climate Data Repository</div>
+            
+            <div class="actions-row">
+               <button id="import-data" class="action-button">
+    <i class="fas fa-file-import"></i> <!-- Swapped from Feather to Font Awesome -->
+    Import Data
+</button>
+
+                
+                <div class="export-group">
+                    <select id="export-format">
+                       <option value="excel">Html</option>
+                        <option value="json">JSON</option>
+                        
+                    </select>
+                   <button id="export-data" class="action-button">
+    <i class="fas fa-upload"></i> <!-- Swapped from Feather to Font Awesome -->
+    Export
+</button>
+
+                </div>
+            </div>
+            
+           <div class="data-content">
+    <div class="data-table-box">
+        <div class="box-title">Available Datasets</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Dataset</th>
+                    <th>Size</th>
+                    <th>Records</th>
+                    <th>Time Range</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="dataset-table">
+                    <!-- Dataset rows populated dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="data-preview-box">
+        <div class="box-title">Data Preview</div>
+        <div id="data-preview">
+          <p class="placeholder-message">
+    <i class="fas fa-database"></i> <!-- Swapped from Feather to Font Awesome -->
+    Select a dataset to preview
+</p>
+
+        </div>
+    </div>
+</div>
+
+            
+            <div class="section-title">CSV Import Guide</div>
+            
+            <div class="csv-guide">
+                <p>Your CSV file should include these columns:</p>
+                <div class="columns-list">
+                    <div class="column-item"><code>city</code> - City name</div>
+                    <div class="column-item"><code>time</code> - Time point (date/hour)</div>
+                    <div class="column-item"><code>latitude</code>, <code>longitude</code> - Coordinates</div>
+                    <div class="column-item"><code>population</code> - City population</div>
+                    <div class="column-item"><code>climate_zone</code> - Climate type</div>
+                </div>
+                
+                <p>Plus any of these parameters:</p>
+                <div class="parameters-grid" id="parameter-list">
+                    <!-- Parameters will be filled dynamically -->
+                </div>
+                
+                <div class="example-row">
+                    <strong>Example:</strong> 
+                    <code>Abu Dhabi,2024-01-01,24.4667,54.3667,1580000,BWh,3600,45,50,1600,2000,70,4900,110,25,93,86,380,20,9,9</code>
+                </div>
+            </div>
+			
+			
+        </div>
+		
+    </div>
+	
+    
+    <!-- Save Dialog -->
+    <div class="modal-overlay" id="save-dialog">
+        <div class="modal-content">
+            <div class="modal-title">Save Report</div>
+            
+            <div class="modal-body">
+                <p>Select the items you want to save:</p>
+                
+                <div class="checkbox-group">
+				<label class="checkbox-row">
+                        <input type="checkbox" id="save-html" checked>
+                        <span>Formatted Report (HTML)</span>
+                    </label>
+                    
+                    
+                </div>
+                
+                <div class="location-select">
+                    <label>Save Location:</label>
+                    <div class="file-path">
+                        <input type="text" id="save-path" placeholder="Choose a location...">
+                        <button id="browse-path" class="action-button">Browse...</button>
+                    </div>
+                    
+                    <div class="common-folders">
+                        <button class="folder-button" data-folder="Downloads">Downloads</button>
+                        <button class="folder-button" data-folder="Documents">Documents</button>
+                        <button class="folder-button" data-folder="Desktop">Desktop</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-buttons">
+                <button id="save-confirm" class="action-button primary">Save Files</button>
+                <button id="save-cancel" class="action-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Save City Data Dialog -->
+    <div class="modal-overlay" id="save-city-dialog">
+        <div class="modal-content">
+            <div class="modal-title">Save City Data</div>
+            
+            <div class="modal-body">
+                <p>This will permanently save the current city data to your local storage.</p>
+                
+                <div class="form-row">
+                    <label>City Name:</label>
+                    <input type="text" id="save-city-name" placeholder="e.g., Singapore">
+                </div>
+                
+                <div class="alert-box">
+    <i class="fas fa-info-circle"></i> 
+
+                    <span>Saving will allow this city data to persist across sessions and be available when you reopen the application.</span>
+                </div>
+            </div>
+            
+            <div class="modal-buttons">
+                <button id="city-save-confirm" class="action-button primary">Save City</button>
+                <button id="city-save-cancel" class="action-button">Cancel</button>
+            </div>
+			
+        </div>
+    </div>
+    
+    <!-- Notification Container -->
+    <div class="notifications-area" id="notification-container"></div>
+    
+	
+	
+	
+	
+	<!-- Leaflet.js (Maps) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.js"></script>
+
+<!-- Plotly.js (Data Visualization) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.16.0/plotly.min.js"></script>
+
+<!-- Brain.js (Neural Networks for AI Predictions) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/brain.js/2.0.0/brain.min.js"></script>
+
+<!-- TensorFlow.js (AI & ML Functions) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/4.7.0/tf.min.js"></script>
+
+<!-- Three.js (3D Graphics & Models) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r150/three.min.js"></script>
+
+<!-- A-Frame (VR Framework) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.0/aframe.min.js"></script>
+
+<!-- Font Awesome Icons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+
+
+
+
+
+
+
+
+    <script src="script.js"></script>
+	
+</body>
+</html>            
