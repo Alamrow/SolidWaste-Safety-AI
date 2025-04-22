@@ -128,6 +128,39 @@
         background-color: #0f0;
         border-radius: 50%;
         box-shadow: 0 0 5px #0f0;
+		
+.neon-text1 {
+    font-size: 16px;
+    color: #4af; /* Boosted brightness */
+}
+
+
+.user-guide-button {
+    background: linear-gradient(45deg, #08f, #0af);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 180, 255, 0.6);
+    transition: 0.3s ease-in-out;
+}
+
+.user-guide-button i {
+    font-size: 22px;
+}
+
+.user-guide-button:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.9), 0 0 20px rgba(0, 180, 255, 0.7);
+    transform: scale(1.05);
+}
+
+
     }
 </style>
 <script>
@@ -144,6 +177,11 @@
     setInterval(updateTime, 1000); // Keeps updating every second
 </script>
 </head>
+<button id="user-guide-button" class="user-guide-button" onclick="window.location.href='index.html'">
+    <i class="fa-solid fa-arrow-left"></i>
+    Back to Home
+</button>
+
 <body>
     <div class="header">
         <div class="logo">Solid Waste and Safety <span>AI</span></div>
@@ -241,6 +279,11 @@
 🚀 **Coming Soon:** This <img src="https://flagcdn.com/w40/ae.png" alt="UAE Flag"> **UAE-focused demo** previews my next Globaly **upcoming app**—stay tuned for even more advanced features!
 
     📢 **Explore More Apps:** Check out my other apps on **Microsoft Store** for more cutting-edge environmental analytics and smart AI solutions!
+	
+	<button id="user-guide-button" class="user-guide-button" onclick="window.location.href='index.html'">
+    <i class="fa-solid fa-arrow-left"></i>
+    Back to Home
+</button>
 </div>
 
     <div class="footer">
