@@ -1446,7 +1446,6 @@ body.light-theme .leaflet-container {
 
 
 
-
 .social-links {
     display: flex;
     gap: 15px;
@@ -1454,7 +1453,7 @@ body.light-theme .leaflet-container {
 }
 
 .social-links a {
-    color: #08f; /* Adjusted to a lighter blue */
+    color: #3af; /* Brighter neon blue for dark mode visibility */
     font-size: 18px;
     text-decoration: none;
     transition: 0.3s ease-in-out;
@@ -1465,14 +1464,14 @@ body.light-theme .leaflet-container {
 
 .social-links i {
     font-size: 22px;
-    color: #0af; /* Slightly toned-down neon */
+    color: #4af; /* Slightly brighter for better contrast */
 }
 
 .social-links a:hover {
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7), 0 0 10px rgba(0, 180, 255, 0.5);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.9), 0 0 12px rgba(0, 180, 255, 0.7); /* Enhanced glow */
 }
 
 .neon-text1 {
     font-size: 16px;
-    color: #0af; /* Adjusted to be less saturated */
+    color: #4af; /* Boosted brightness */
 }
